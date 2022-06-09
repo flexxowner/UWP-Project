@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 
 namespace DCT_Project
 {
-    public class RecordingViewModel
+    public class ApplicationViewModel
     {
         private ObservableCollection<Person> people = new ObservableCollection<Person>();
         public ObservableCollection<Person> People { get { return this.people; } }
 
-        public RecordingViewModel()
+        public ApplicationViewModel()
         {
             this.people.Add(new Person() { FirstName = "Alina", LastName = "Kotkova" });
             this.people.Add(new Person() { FirstName = "Sergey", LastName = "Korolenko" });

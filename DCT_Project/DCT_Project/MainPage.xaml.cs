@@ -25,6 +25,8 @@ namespace DCT_Project
         public MainPage()
         {
             this.InitializeComponent();
+            this.ViewModel = new ApplicationViewModel();
         }
+        public ApplicationViewModel ViewModel { get; set; }
     }
 }

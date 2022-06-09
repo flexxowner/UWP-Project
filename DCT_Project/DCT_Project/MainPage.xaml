@@ -8,14 +8,17 @@
     mc:Ignorable="d"
     Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
 
-    <Page.DataContext>
-        <local:RecordingViewModel/>
-    </Page.DataContext>
+
     <Grid>
-        <ListView ItemsSource="{Binding People}">
+        <ListView ItemsSource="{x:Bind ViewModel.People}">
             <ListView.ItemTemplate>
                 <DataTemplate x:DataType="local:Person">
-                    <TextBlock Text = "{x:Bind OneLineSummary}"/>
+                    <StackPanel Orientation="Horizontal" Margin="6">
+                        <SymbolIcon Symbol="People" Margin="0,0,12,0"/>
+                        <StackPanel>
+                            <TextBlock Text = "{x:Bind OneLineSummary}"/>
+                        </StackPanel>
+                    </StackPanel>
                 </DataTemplate>
             </ListView.ItemTemplate>
         </ListView>
