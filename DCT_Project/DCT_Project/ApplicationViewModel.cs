@@ -1,22 +1,58 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.ObjectModel;
+using System.Windows.Input;
 
 namespace DCT_Project
 {
-    public class ApplicationViewModel
+    public class ApplicationViewModel 
     {
-        private ObservableCollection<Person> people = new ObservableCollection<Person>();
-        public ObservableCollection<Person> People { get { return this.people; } }
+        private Person _selectedPerson;
+        private ObservableCollection<Person> _people = new ObservableCollection<Person>();
+        public ObservableCollection<Person> People { get { return this._people; } }
 
         public ApplicationViewModel()
         {
-            this.people.Add(new Person() { FirstName = "Alina", LastName = "Kotkova" });
-            this.people.Add(new Person() { FirstName = "Sergey", LastName = "Korolenko" });
-            this.people.Add(new Person() { FirstName = "Sergey", LastName = "Kolotilo" });
+            this._people = new ObservableCollection<Person>
+            {
+            new Person() { FirstName = "Alina", LastName = "Kotkova" },
+            new Person() { FirstName = "Sergey", LastName = "Korolenko" },
+            new Person() { FirstName = "Sergey", LastName = "Kolotilo" }
+            };
         }
+        public Person SelectedPerson
+        {
+            get { return this._selectedPerson; }
+            set { this._selectedPerson = value; }
+        }
+
+        private ICommand _addCommand;
+        public ICommand AddCommand
+        {
+            get
+            {
+                return _addCommand ??
+                    (_addCommand = new RelayCommand(() =>
+                    {
+                        Person person = new Person();
+                        People.Add(person);
+                        SelectedPerson = person;
+                    }));
+            }
+        }
+        private ICommand _deleteCommand;
+        public ICommand DeleteCommand
+        {
+            get
+            {
+                return _deleteCommand ??
+                    (_deleteCommand = new RelayCommand(() =>
+                    {
+                        Person person = new Person();
+                        person = SelectedPerson;
+                        People.Remove(person);
+                    }));
+            }
+        }
+
     }
+
 }

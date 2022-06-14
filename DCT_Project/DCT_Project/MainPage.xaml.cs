@@ -28,5 +28,23 @@ namespace DCT_Project
             this.ViewModel = new ApplicationViewModel();
         }
         public ApplicationViewModel ViewModel { get; set; }
+
+        private void ListOfPerson_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            foreach (var item in ListOfPerson.SelectedItems)
+            {
+                ViewModel.SelectedPerson = (Person)item;
+            }
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Confirmation.IsOpen = false;
+        }
+
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Confirmation.IsOpen = true;
+        }
     }
 }
