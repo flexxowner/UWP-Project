@@ -11,7 +11,7 @@
 
     <Grid x:Name="MyGrid" Background="AliceBlue">
 
-        <RelativePanel Height="Auto" Width="Auto" Margin="0,50,900,0" >
+        <RelativePanel Height="Auto" Width="Auto" Margin="0,158,795,0" >
             <ListView x:Name="ListOfPerson" ItemsSource="{x:Bind ViewModel.People}" SelectedItem="{x:Bind ViewModel.SelectedPerson, Mode=TwoWay}" RenderTransformOrigin="0.5,0.5" Width="Auto" Height="Auto" Margin="0,0">
                 <ListView.RenderTransform>
                     <CompositeTransform ScaleY="1"/>
@@ -29,7 +29,7 @@
                 </ListView.ItemTemplate>
             </ListView>
         </RelativePanel>
-        <StackPanel Background="AliceBlue" Margin="0,0,0,750" HorizontalAlignment="Left" Width="Auto" Height="30" Orientation="Horizontal">
+        <StackPanel Background="AliceBlue" Margin="0,0,0,690" HorizontalAlignment="Left" Width="Auto" Height="Auto" Orientation="Horizontal">
             <Button x:Name="button" Content="Edit" Command="{x:Bind ViewModel.OpenCommand}" Background="Gray">
                 <Button.Flyout>
                     <MenuFlyout>
