@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Windows.Input;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
 using Windows.UI.Xaml;
@@ -29,22 +30,5 @@ namespace DCT_Project
         }
         public ApplicationViewModel ViewModel { get; set; }
 
-        private void ListOfPerson_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-            foreach (var item in ListOfPerson.SelectedItems)
-            {
-                ViewModel.SelectedPerson = (Person)item;
-            }
-        }
-
-        private void Button_Click(object sender, RoutedEventArgs e)
-        {
-            Confirmation.IsOpen = false;
-        }
-
-        private void Button_Click_1(object sender, RoutedEventArgs e)
-        {
-            Confirmation.IsOpen = true;
-        }
     }
 }

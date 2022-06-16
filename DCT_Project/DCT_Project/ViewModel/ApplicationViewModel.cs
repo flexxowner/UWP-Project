@@ -3,7 +3,7 @@ using System.Windows.Input;
 
 namespace DCT_Project
 {
-    public class ApplicationViewModel 
+    public class ApplicationViewModel
     {
         private Person _selectedPerson;
         private ObservableCollection<Person> _people = new ObservableCollection<Person>();
@@ -17,6 +17,8 @@ namespace DCT_Project
             new Person() { FirstName = "Sergey", LastName = "Korolenko" },
             new Person() { FirstName = "Sergey", LastName = "Kolotilo" }
             };
+            OpenCommand = new RelayCommand(() => IsOpen = true);
+            CloseCommand = new RelayCommand(() => IsOpen = false);
         }
         public Person SelectedPerson
         {
@@ -52,6 +54,15 @@ namespace DCT_Project
                     }));
             }
         }
+        private bool _isOpen;
+        public bool IsOpen
+        {
+            get { return _isOpen; }
+            set { _isOpen = value; }
+        }
+
+        public RelayCommand OpenCommand { get; set; }
+        public RelayCommand CloseCommand { get; set; }
 
     }
 
