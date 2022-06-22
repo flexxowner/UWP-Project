@@ -6,7 +6,7 @@ namespace DCT_Project
     public class ApplicationViewModel
     {
         private Person _selectedPerson;
-        private ObservableCollection<Person> _people = new ObservableCollection<Person>();
+        private readonly ObservableCollection<Person> _people = new ObservableCollection<Person>();
         public ObservableCollection<Person> People { get { return this._people; } }
 
         public ApplicationViewModel()
@@ -18,6 +18,8 @@ namespace DCT_Project
             new Person() { FirstName = "Sergey", LastName = "Kolotilo" }
             };
             OpenCommand = new RelayCommand(() => IsOpen = true);
+            AddCommand = new RelayCommand(AddPerson);
+            DeleteCommand = new RelayCommand(DeletePerson);
         }
         public Person SelectedPerson
         {
@@ -25,34 +27,6 @@ namespace DCT_Project
             set { this._selectedPerson = value; }
         }
 
-        private ICommand _addCommand;
-        public ICommand AddCommand
-        {
-            get
-            {
-                return _addCommand ??
-                    (_addCommand = new RelayCommand(() =>
-                    {
-                        Person person = new Person();
-                        People.Add(person);
-                        SelectedPerson = person;
-                    }));
-            }
-        }
-        private ICommand _deleteCommand;
-        public ICommand DeleteCommand
-        {
-            get
-            {
-                return _deleteCommand ??
-                    (_deleteCommand = new RelayCommand(() =>
-                    {
-                        Person person = new Person();
-                        person = SelectedPerson;
-                        People.Remove(person);
-                    }));
-            }
-        }
         private bool _isOpen;
         public bool IsOpen
         {
@@ -61,7 +35,22 @@ namespace DCT_Project
         }
 
         public RelayCommand OpenCommand { get; set; }
+        public RelayCommand AddCommand { get; set; }
+        public RelayCommand DeleteCommand { get; set; }
 
+        public void AddPerson()
+        {
+            Person person = new Person();
+            People.Add(person);
+            SelectedPerson = person;
+        }
+
+        public void DeletePerson()
+        {
+            Person person = new Person();
+            person = SelectedPerson;
+            People.Remove(person);
+        }
     }
 
 }
